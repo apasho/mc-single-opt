@@ -13,10 +13,10 @@ $apikey = 'YOUR API KEY';
 $listId = 'YOUR LIST ID';
 $apiUrl = 'http://api.mailchimp.com/1.3/';
 
-// create a new api opbject
+// create a new api object
 $api = new MCAPI($apikey);
 
-// set $merge_vars if you have only one input
+// set $merge_vars to null if you have only one input
 $merge_vars = null;
 
 if($email !== '') {
@@ -27,7 +27,7 @@ if($email !== '') {
   if ($api->errorCode){
     echo "<p>Error: $api->errorCode, $api->errorMessage</p>";
   } else {
-      echo '<p>thank you, please check your inbox</p>';
+      echo '<p>Please check your inbox.</p>';
   }
 }
 
