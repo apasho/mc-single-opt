@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div id="form-container">
+      <label for="email-address">Email address</label>
+      <input type="email" id="email-address" name="email-address"  placeholder="Please enter your email." value="">      
+      <!-- for bots -->
+      <div style="position: absolute; left: -6000px;"><input type="text" id="extra-info" name="extra-info" tabindex="-1" value=""></div>
+      <button type="button" name="subscribe" id="subscribe">Submit</button>                            
+    </div>
+    
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script>
+
+      jQuery("#subscribe").click(function() {
+
+      var email = jQuery("#email-address").val();
+      var other_text = jQuery("#extra-info").val();
+
+      // don't send if we have other text
+      if(other_text === '') {
+        if(email !== '')
+          jQuery.ajax({
+            type: "POST",
+            async: true,
+            data: { email: email },
+            url: "submit.php",
+            dataType: "html",
+            success: function (data)
+              { jQuery("#form-container").html(data); },
+            error: function (err)
+              { alert(err.responseText);}
+          });
+      }
+
+      });  
+    </script>      
+  </body>
+</html>
